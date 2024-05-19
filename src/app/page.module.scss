@@ -1,0 +1,28 @@
+.mainWrap {
+  background-color: #f9fafb;
+  padding: 0;
+}
+.containerBusSearchWrapper {
+  position: relative;
+
+  height: 50vh;
+  clip-path: polygon(50% 0%, 100% 0, 100% 35%, 100% 100%, 77% 95%, 50% 100%, 23% 95%, 0 100%, 0% 35%, 0 0);
+  background-color: blue;
+  margin-top: 16px;
+
+  img {
+    width: 100%;
+  }
+}
+.busSearchWrapper {
+  position: absolute;
+  bottom: -60px;
+  background-color: #fff;
+  left: 0;
+  right: 0;
+  width: 70%;
+  padding: 35px 25px;
+  margin: auto;
+  border: 1px solid rgb(231 231 231);
+  border-radius: 16px;
+}
