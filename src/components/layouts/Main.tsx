@@ -6,8 +6,8 @@ const MainWrapper = styled.main`
   background-color: #f9fafb;
   height: 90vh;
   margin: auto;
-  /* width: 90%; */
-  /* max-width: 1600px; */
+  width: 90%;
+  max-width: 1600px;
 `;
 interface LayoutProps {
   children: ReactNode;

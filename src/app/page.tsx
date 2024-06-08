@@ -6,7 +6,8 @@ import styles from './page.module.scss';
 import { CardMedia } from '@mui/material';
 import Section from '@/components/layouts/Section';
 import Footer from '@/components/layouts/Footer';
-
+import bg from '../../public/assets/images/download.webp';
+import Image from 'next/image';
 const topBusTravelDestinationsInIndia = [
   {
     uid: '1',
@@ -83,13 +84,13 @@ const topBusTravelDestinationsInIndia = [
 export default function Home() {
   return (
     <div className={styles.mainWrap}>
-      <div className="mb-4">
-        <NavBar />
-      </div>
+      <div className="mb-4"></div>
       <Main>
         <Box position={'relative'}>
           <Box className={styles.containerBusSearchWrapper}>
-            <img src="https://s3-ap-southeast-1.amazonaws.com/ola-prod-website/hero-banner.webp" alt="" />{' '}
+            <div>
+              <Image src={bg} alt="" />{' '}
+            </div>
           </Box>
           <Box className={styles.busSearchWrapper}>
             <SearchBus />

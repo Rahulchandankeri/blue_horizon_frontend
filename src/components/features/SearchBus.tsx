@@ -6,9 +6,11 @@ import React, { useState } from 'react';
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import { useRouter } from 'next/navigation';
 const SearchBus = () => {
   const [selectedValue, setSelectedValue] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const router = useRouter();
 
   const handleDateChange = (date: any) => {
     setSelectedDate(date);
@@ -17,7 +19,9 @@ const SearchBus = () => {
   const handleFromSelect = (e: any, val: any) => {
     setSelectedValue(val.value);
   };
-
+  const handleSearchBuses = () => {
+    router.push('/bus-tickets');
+  };
   return (
     <>
       {' '}
@@ -39,11 +43,15 @@ const SearchBus = () => {
         <Grid lg={3}>
           {' '}
           <>
-            <Input type="date"> </Input>
+            <Input type="date" size="lg">
+              {' '}
+            </Input>
           </>
         </Grid>
         <Grid>
-          <Button size="lg">Search Buses</Button>
+          <Button size="lg" onClick={handleSearchBuses}>
+            Search Buses
+          </Button>
         </Grid>{' '}
       </Grid>
     </>
