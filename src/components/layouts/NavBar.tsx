@@ -29,6 +29,8 @@ import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import styles from './NavBar.module.scss';
+import { DialogContent, FormControl, FormLabel, Modal, ModalDialog } from '@mui/joy';
+import Login from '../common/Login';
 
 // import TeamNav from './Navigation';
 
@@ -65,6 +67,8 @@ function ColorSchemeToggle() {
 
 export default function Header() {
   const [open, setOpen] = React.useState(false);
+  const [isLoginModalVisible, setIsLoginModalVisible] = React.useState(false);
+
   return (
     <Box
       className={styles.navbar}
@@ -106,6 +110,11 @@ export default function Header() {
           alignItems: 'center',
         }}
       >
+        <Button onClick={() => setIsLoginModalVisible(true)} variant="plain">
+          <Typography level="title-sm" textColor="text.primary">
+            Login
+          </Typography>
+        </Button>
         <Dropdown>
           <MenuButton variant="plain" size="sm" sx={{ maxWidth: '32px', maxHeight: '32px', borderRadius: '9999999px' }}>
             Menu
@@ -171,6 +180,8 @@ export default function Header() {
           </Menu>
         </Dropdown>
       </Box>
+
+      <Login isVisible={isLoginModalVisible} setIsVisible={setIsLoginModalVisible} />
     </Box>
   );
 }
