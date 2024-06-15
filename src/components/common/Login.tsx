@@ -16,6 +16,7 @@ import authService from '../../services/authService';
 import { Formik, FormikHelpers, FormikProps, Form, Field, FieldProps, useFormik } from 'formik';
 import { loginSchema } from '@/schemas/validitions';
 import OTPField from '@/components/common/OTPField';
+import OTPInput from '@/components/common/OTPField';
 interface LoginProps {
   isVisible: boolean;
   setIsVisible: (visible: boolean) => void;
@@ -23,32 +24,63 @@ interface LoginProps {
 interface LoginFormProps {
   email_id: string;
 }
+interface OTPFormProps {
+  email_id: string;
+  otp: number;
+}
 const Login: React.FC<LoginProps> = ({ isVisible, setIsVisible }) => {
   const [isSnackBarVisible, setIsSnackBarVisible] = useState(false);
   const initialValues: LoginFormProps = { email_id: '' };
   const [preLoginDetails, setPreLoginDetails] = useState({
     status: '',
   });
+  const [customerDetails, setCustomerDetails] = useState({
+    email_id: '',
+  });
+
+  const [otp, setOTP] = useState('');
 
   const { values, errors, handleBlur, handleChange, touched, handleSubmit } = useFormik({
     initialValues,
     validationSchema: loginSchema,
     onSubmit: (values, action) => {
       handleLogin(values);
-
       action.resetForm();
     },
   });
+
+  const verifyOTP = useFormik({
+    initialValues: {
+      otp: '',
+    },
+    onSubmit: (values) => {
+      handleOTPVerify(values);
+    },
+  });
+
+  const handleOTPVerify = async (values: any) => {
+    try {
+      const verifyPayload: OTPFormProps = {
+        otp: +otp,
+        email_id: customerDetails?.email_id,
+      };
+
+      const res: any = await authService.verifyOTP(verifyPayload);
+    } catch (error) {}
+  };
+
+  // TO HANDLE LOGIN
   const handleLogin = async (values: LoginFormProps) => {
     try {
       const loginPayload = {
         ...values,
       };
+
       const res: any = await authService.login(loginPayload);
 
       if (res?.responseCode === 'OTP_SENT') {
         setIsSnackBarVisible(true);
-
+        setCustomerDetails(loginPayload);
         setPreLoginDetails({
           status: 'OTP_SENT',
         });
@@ -57,6 +89,8 @@ const Login: React.FC<LoginProps> = ({ isVisible, setIsVisible }) => {
     } finally {
     }
   };
+
+  // TO VERIFY OTP
 
   return (
     <>
@@ -90,16 +124,15 @@ const Login: React.FC<LoginProps> = ({ isVisible, setIsVisible }) => {
         ) : (
           <>
             <ModalDialog sx={{ width: 400 }}>
-              <DialogTitle>Sign Up / Log In!</DialogTitle>
-              <form onSubmit={handleSubmit}>
+              <DialogTitle>Verify OTP</DialogTitle>
+              <form onSubmit={verifyOTP.handleSubmit}>
                 <Stack spacing={4}>
-                  <FormControl error={errors.email_id && touched.email_id ? true : false}>
+                  <FormControl>
                     <FormLabel>OTP</FormLabel>
-                    <OTPField />
-                    {errors.email_id && touched.email_id ? <FormHelperText>{errors.email_id}</FormHelperText> : null}
+                    <OTPInput otp={otp} setOtp={setOTP} />
                   </FormControl>
                   <Button size="lg" type="submit">
-                    Send OTP
+                    Submit
                   </Button>
                 </Stack>
               </form>

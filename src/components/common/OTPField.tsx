@@ -158,9 +158,7 @@ function OTPField({
   );
 }
 
-export default function OTPInput() {
-  const [otp, setOtp] = React.useState('');
-
+export default function OTPInput({ otp, setOtp }: { otp: string; setOtp: React.Dispatch<React.SetStateAction<string>> }) {
   return (
     <Box
       sx={{
