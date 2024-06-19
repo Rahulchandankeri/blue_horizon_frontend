@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 const MainWrapper = styled.main`
   background-color: #f9fafb;
-  height: 90vh;
   margin: auto;
   width: 90%;
   max-width: 1600px;
+  margin-top: 32px;
 `;
 interface LayoutProps {
   children: ReactNode;

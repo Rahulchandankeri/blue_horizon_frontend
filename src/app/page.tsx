@@ -115,9 +115,6 @@ export default function Home() {
             </Grid>
           </Box>
         </Section>
-        <Section>
-          <Footer />
-        </Section>
       </Main>
     </div>
   );

@@ -31,6 +31,7 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import styles from './NavBar.module.scss';
 import { DialogContent, FormControl, FormLabel, Modal, ModalDialog } from '@mui/joy';
 import Login from '../common/Login';
+import Link from 'next/link';
 
 // import TeamNav from './Navigation';
 
@@ -79,17 +80,19 @@ export default function Header() {
       }}
     >
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={1} sx={{ display: { xs: 'none', sm: 'flex' } }}>
-        <IconButton
-          size="md"
-          variant="outlined"
-          color="neutral"
-          sx={{
-            display: { xs: 'none', sm: 'inline-flex' },
-            borderRadius: '50%',
-          }}
-        >
-          <LanguageRoundedIcon />
-        </IconButton>
+        <Link href="/">
+          <IconButton
+            size="md"
+            variant="outlined"
+            color="neutral"
+            sx={{
+              display: { xs: 'none', sm: 'inline-flex' },
+              borderRadius: '50%',
+            }}
+          >
+            <LanguageRoundedIcon />
+          </IconButton>
+        </Link>
       </Stack>
       <Box sx={{ display: { xs: 'inline-flex', sm: 'none' } }}>
         <IconButton variant="plain" color="neutral" onClick={() => setOpen(true)}>

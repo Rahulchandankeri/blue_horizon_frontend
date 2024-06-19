@@ -1,16 +1,26 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
+console.log(process.env.NEXT_PUBLIC_API_URL);
 const apiClient = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL_LOCAL || 'http://localhost:3002/api/v1/',
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
   headers: {
     'Content-Type': 'application/json',
+    Authorization: `Bearer ${Cookies.get('accessToken')}`,
   },
 });
 
 apiClient.interceptors.response.use(
-  (response) => response,
+  (config) => {
+    const accessToken = Cookies.get('accessToken');
+
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+
+    return config;
+  },
   (error) => {
-    console.error('API Error:', error);
     return Promise.reject(error);
   }
 );

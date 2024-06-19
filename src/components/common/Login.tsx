@@ -15,7 +15,7 @@ import React, { useState } from 'react';
 import authService from '../../services/authService';
 import { Formik, FormikHelpers, FormikProps, Form, Field, FieldProps, useFormik } from 'formik';
 import { loginSchema } from '@/schemas/validitions';
-import OTPField from '@/components/common/OTPField';
+import Cookies from 'js-cookie';
 import OTPInput from '@/components/common/OTPField';
 interface LoginProps {
   isVisible: boolean;
@@ -65,7 +65,9 @@ const Login: React.FC<LoginProps> = ({ isVisible, setIsVisible }) => {
         email_id: customerDetails?.email_id,
       };
 
-      const res: any = await authService.verifyOTP(verifyPayload);
+      const data: any = await authService.verifyOTP(verifyPayload);
+
+      Cookies.set('accessToken', data?.userDetails?.accessToken);
     } catch (error) {}
   };
 
