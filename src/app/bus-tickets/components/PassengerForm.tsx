@@ -93,6 +93,10 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
   const onPaymentSuccess = async (paymentDetails: RazorpayPaymentResponse) => {
     try {
       const response = await bookingService.bookingSuccess(paymentDetails);
+      setPaymentStatus({
+        isVisible: true,
+        message: 'Payment successful!',
+      });
     } catch (error) {
       console.log(error);
     }
@@ -110,10 +114,6 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
         console.log(response, `response`);
 
         onPaymentSuccess({ ...response, amount: orderDetails?.amount });
-        setPaymentStatus({
-          isVisible: true,
-          message: 'Payment successful!',
-        });
       },
       notes: {
         booking_id: orderDetails?.booking_id,
