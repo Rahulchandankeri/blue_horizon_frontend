@@ -1,5 +1,3 @@
-// FormDrawer.tsx
-
 import React, { useState } from 'react';
 import {
   Box,
@@ -15,28 +13,27 @@ import {
   Card,
   CardContent,
   Divider,
-  Select,
-  Option,
   DialogTitle,
   Snackbar,
   Grid,
   FormHelperText,
 } from '@mui/joy';
 import SeatCounter from './SeatCounter';
-import { Form, useFormik } from 'formik';
-import { loginSchema, userBusBookingSchema } from '@/schemas/validitions';
+import { useFormik } from 'formik';
+import { userBusBookingSchema } from '@/schemas/validitions';
 import bookingService, { RazorpayPaymentResponse } from '@/services/bookingServices';
 
 interface PassengerFormProps {
   isDrawerOpen: boolean;
   setIsDrawerOpen: (open: boolean) => void;
+  busDetails?: any;
 }
 interface InitiateBooking {
   name: String;
   email_id: String;
 }
 
-const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawerOpen }) => {
+const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawerOpen, busDetails }) => {
   const [seatCount, setSeatCount] = useState(1);
   const [paymentStatus, setPaymentStatus] = useState({ isVisible: false, message: '' });
   // Initial values for the form fields
@@ -77,7 +74,7 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
       const payload = {
         name: values?.name,
         receipt: `receipt_order_${values?.booking_id}`,
-        amount: seatCount * 850,
+        amount: seatCount * busDetails?.price,
         booking_id: values?.booking_id,
       };
       const response = await bookingService.createBooking(payload);
@@ -184,7 +181,7 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
                         <SeatCounter counter={seatCount} setCounter={setSeatCount} />{' '}
                       </Grid>
                       <Grid>
-                        <Typography fontWeight={600}>{seatCount * 850}₹</Typography>
+                        <Typography fontWeight={600}>{seatCount * busDetails?.price}₹</Typography>
                       </Grid>
                     </Grid>
                   </FormControl>

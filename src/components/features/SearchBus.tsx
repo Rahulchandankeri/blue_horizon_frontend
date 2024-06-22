@@ -28,7 +28,8 @@ const SearchBus = () => {
   });
 
   const handleSearchBuses = (values: any) => {
-    router.push('/bus-tickets');
+    console.log(values);
+    router.push(`/trips?source=${values?.fromCity}&destination=${values?.toCity}&journeyDate=${values?.dateOfJourney}`);
   };
   return (
     <>

@@ -1,7 +1,11 @@
-import BusInfoCard from '@/components/features/BusBookingCard';
+'use client';
+
 import BusCard from '@/components/features/BusCard';
 import Main from '@/components/layouts/Main';
+import tripServices from '@/services/tripServices';
 import { Grid } from '@mui/joy';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const data = {
   buses: [
@@ -30,13 +34,32 @@ const data = {
 };
 
 const BusTickets = () => {
+  const searchParams = useSearchParams();
+
+  const [trips, setTrips] = useState<any>(null);
+  const getTrips = async () => {
+    try {
+      const payload = {
+        source: searchParams.get('source'),
+        destination: searchParams.get('destination'),
+        journeyDate: '22/06/2024',
+      };
+      const response = await tripServices.getAvailableTrips(payload);
+      setTrips(response);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getTrips();
+  }, []);
+
   return (
     <Main>
       {/* <BusInfoCard busNumber="22B" route="Downtown to Uptown" departureTime="08:30 AM" arrivalTime="09:15 AM" status="On Time" /> */}
       <Grid container spacing={2}>
-        {data?.buses?.map((bus) => {
+        {trips?.availableTrips?.map((bus: any, index: number) => {
           return (
-            <Grid xs={12} key={bus?.id}>
+            <Grid xs={12} key={index}>
               <BusCard bus={bus} />
             </Grid>
           );

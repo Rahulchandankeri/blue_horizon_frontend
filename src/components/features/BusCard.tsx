@@ -1,15 +1,20 @@
 'use client';
 import React, { useState } from 'react';
-import { Card, Chip, Typography, Divider, List, ListItem, ListItemDecorator, CardActions, Button } from '@mui/joy';
+import { Card, Chip, Typography, Divider, List, ListItem, ListItemDecorator, CardActions, Button, Stack, Grid } from '@mui/joy';
 import { Check, KeyboardArrowRight } from '@mui/icons-material';
-import PassengerForm from '@/app/bus-tickets/components/PassengerForm';
-
+import PassengerForm from '@/app/trips/components/PassengerForm';
+import capitilizeFirstLetter from '@/utils/capitilizeFirstLetter';
+import StarIcon from '@mui/icons-material/Star';
 interface BusData {
   id: string;
   title: string;
   features: string[];
-  pricing: number;
+  price: number;
   tier: string;
+  source: string;
+  destination: string;
+  departure: string;
+  arrival: string;
 }
 
 interface BusCardProps {
@@ -21,27 +26,65 @@ const BusCard: React.FC<BusCardProps> = ({ bus }) => {
   return (
     <>
       <Card size="lg" variant="outlined">
-        <Chip size="sm" variant="outlined" color="neutral">
-          {bus?.tier}
-        </Chip>
-        <Typography level="h2">{bus.title}</Typography>
-        <Divider inset="none" />
+        <Grid container alignItems={'center'}>
+          <Grid xs={3}>
+            <Chip size="sm" variant="outlined" color="neutral">
+              {capitilizeFirstLetter(bus?.source)} -{capitilizeFirstLetter(bus?.destination)}
+            </Chip>
+          </Grid>
+          <Grid xs={5}>
+            <Stack direction={'row'} gap={2}>
+              <Typography level="body-xs">
+                {' '}
+                Departs At: <Typography sx={{ fontWeight: 600 }}>{bus?.departure}</Typography>
+              </Typography>
+              <Typography level="body-xs">
+                {' '}
+                Arrives At : <Typography sx={{ fontWeight: 600 }}>{bus?.arrival}</Typography>
+              </Typography>
+            </Stack>
+          </Grid>
+
+          <Grid xs={4}>
+            {' '}
+            <Typography level="body-md">
+              <Stack
+                alignItems={'center'}
+                justifyContent={'right'}
+                direction={'row'}
+                sx={{
+                  textAlign: 'right',
+                }}
+              >
+                {' '}
+                4.4{' '}
+                <StarIcon
+                  sx={{
+                    fontSize: 20,
+                  }}
+                />{' '}
+              </Stack>
+            </Typography>
+          </Grid>
+        </Grid>
+
         <List size="sm" sx={{ mx: 'calc(-1 * var(--ListItem-paddingX))' }} orientation="horizontal">
-          {bus.features.map((feature, index) => (
+          {/* {bus.features.map((feature, index) => (
             <ListItem key={index}>
               <ListItemDecorator>
                 <Check />
               </ListItemDecorator>
               {feature}
             </ListItem>
-          ))}
+          ))} */}
         </List>
-        <Divider inset="none" />
+
+        <Divider inset="none" sx={{ margin: 0 }} />
         <CardActions>
           <Typography level="title-lg" sx={{ mr: 'auto' }}>
-            {bus.pricing}₹
+            {bus?.price}₹
             <Typography fontSize="sm" textColor="text.tertiary">
-              / Per day
+              / Per Ticket
             </Typography>
           </Typography>
 
@@ -50,7 +93,7 @@ const BusCard: React.FC<BusCardProps> = ({ bus }) => {
           </Button>
         </CardActions>
       </Card>
-      <PassengerForm isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} />{' '}
+      <PassengerForm isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} busDetails={bus} />{' '}
     </>
   );
 };

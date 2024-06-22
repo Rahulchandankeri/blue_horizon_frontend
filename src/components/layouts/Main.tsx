@@ -7,6 +7,7 @@ const MainWrapper = styled.main`
   margin: auto;
   width: 90%;
   max-width: 1600px;
+  min-height: 60vh;
   margin-top: 32px;
 `;
 interface LayoutProps {

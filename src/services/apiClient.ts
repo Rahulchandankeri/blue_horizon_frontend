@@ -1,7 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-console.log(Cookies.get('accessToken'));
 const apiClient = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
   headers: {

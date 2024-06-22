@@ -1,5 +1,6 @@
 import {
   Button,
+  CircularProgress,
   DialogTitle,
   FormControl,
   FormHelperText,
@@ -17,6 +18,8 @@ import { Formik, FormikHelpers, FormikProps, Form, Field, FieldProps, useFormik 
 import { loginSchema } from '@/schemas/validitions';
 import Cookies from 'js-cookie';
 import OTPInput from '@/components/common/OTPField';
+import { updateAuthDetails } from '@/redux/features/auth/authSlice';
+import { useDispatch } from 'react-redux';
 interface LoginProps {
   isVisible: boolean;
   setIsVisible: (visible: boolean) => void;
@@ -37,6 +40,7 @@ const Login: React.FC<LoginProps> = ({ isVisible, setIsVisible }) => {
   const [customerDetails, setCustomerDetails] = useState({
     email_id: '',
   });
+  const dispatch = useDispatch();
 
   const [otp, setOTP] = useState('');
 
@@ -66,7 +70,7 @@ const Login: React.FC<LoginProps> = ({ isVisible, setIsVisible }) => {
       };
 
       const data: any = await authService.verifyOTP(verifyPayload);
-
+      dispatch(updateAuthDetails(true));
       Cookies.set('accessToken', data?.userDetails?.accessToken);
     } catch (error) {
     } finally {
@@ -102,6 +106,7 @@ const Login: React.FC<LoginProps> = ({ isVisible, setIsVisible }) => {
       <Modal open={isVisible} onClose={() => setIsVisible(false)}>
         {preLoginDetails.status !== 'OTP_SENT' ? (
           <>
+            {preLoginDetails.status === 'OTP_SENT' ? <CircularProgress variant="solid" /> : null}
             <ModalDialog sx={{ width: 400 }}>
               <DialogTitle>Sign Up / Log In!</DialogTitle>
               <form onSubmit={handleSubmit}>
