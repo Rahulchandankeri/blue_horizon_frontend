@@ -35,3 +35,13 @@ export const userBusBookingSchema = Yup.object({
     .matches(/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/, 'Phone number must be a valid Indian phone number')
     .required('Please enter your phone number'),
 });
+
+export const searchBusSchema = Yup.object({
+  fromCity: Yup.string()
+    .required('Please select from city')
+    .notOneOf([Yup.ref('toCity'), null], 'From city and To city cannot be the same'),
+  toCity: Yup.string()
+    .required('Please select to city')
+    .notOneOf([Yup.ref('fromCity'), null], 'From city and To city cannot be the same'),
+  dateOfJourney: Yup.string().required('Please select date of journey'),
+});

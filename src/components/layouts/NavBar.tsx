@@ -156,8 +156,10 @@ export default function Header() {
             </MenuItem>
             <ListDivider />
             <MenuItem>
-              <HelpRoundedIcon />
-              Help
+              <Link href="/bookings">
+                <HelpRoundedIcon />
+                Bookings
+              </Link>
             </MenuItem>
             <MenuItem>
               <SettingsRoundedIcon />

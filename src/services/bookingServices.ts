@@ -24,5 +24,11 @@ const bookingSuccess = async (payload: any): Promise<RazorpayPaymentResponse> =>
   const response = await apiClient.post(`/bus/complete-payment`, payload);
   return response.data;
 };
-const bookingService = { initiateBooking, createBooking, bookingSuccess };
+
+const getBookings = async (): Promise<any> => {
+  const response = await apiClient.post(`/bus/my-bookings`);
+  return response.data;
+};
+
+const bookingService = { initiateBooking, createBooking, bookingSuccess, getBookings };
 export default bookingService;
