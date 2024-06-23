@@ -308,7 +308,8 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
             </Stack>
           </Box>{' '}
         </>
-      </Modal>
+      </Modal>{' '}
+      <script async src="https://checkout.razorpay.com/v1/checkout.js"></script>
     </>
   );
 };

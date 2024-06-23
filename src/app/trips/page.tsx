@@ -11,7 +11,6 @@ const TripsPage = () => {
           <AvailableTrips />
         </Grid>
       </Suspense>
-      <script async src="https://checkout.razorpay.com/v1/checkout.js"></script>
     </Main>
   );
 };
