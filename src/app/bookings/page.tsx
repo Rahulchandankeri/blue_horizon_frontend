@@ -22,7 +22,7 @@ const Bookings = () => {
       <Grid container spacing={2}>
         {bookedTickets?.bookingDetails?.map((details: any) => (
           <Grid xs={3} key={details?.booking_id}>
-            <TicketCard passengerName={details?.name} />
+            <TicketCard details={details} />
           </Grid>
         ))}
       </Grid>

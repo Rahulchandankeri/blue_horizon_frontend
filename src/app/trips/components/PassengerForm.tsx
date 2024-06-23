@@ -32,6 +32,7 @@ import { userBusBookingSchema } from '@/schemas/validitions';
 import bookingService, { RazorpayPaymentResponse } from '@/services/bookingServices';
 import { Check, CheckCircle, Close } from '@mui/icons-material';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 interface PassengerFormProps {
   isDrawerOpen: boolean;
@@ -45,6 +46,7 @@ interface InitiateBooking {
 
 const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawerOpen, busDetails }) => {
   const [seatCount, setSeatCount] = useState(1);
+  const searchParams = useSearchParams();
   const [paymentStatus, setPaymentStatus] = useState({ isVisible: false, message: '' });
   // Initial values for the form fields
   const initialValues = {
@@ -66,10 +68,16 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
   });
 
   const handleBookingIntiation = async (values: any) => {
+    const journeySearchDetails = {
+      source: searchParams.get('source'),
+      destination: searchParams.get('destination'),
+      journeyDate: '22/06/2024',
+    };
     try {
       const payload = {
         name: values.name,
         email_id: values?.email_id,
+        ...journeySearchDetails,
       };
       const response = await bookingService.initiateBooking(payload);
       if (response.booking_id) {

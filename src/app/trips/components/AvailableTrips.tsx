@@ -7,7 +7,6 @@ import React, { useEffect, useState } from 'react';
 
 const AvailableTrips = () => {
   const searchParams = useSearchParams();
-
   const [trips, setTrips] = useState<any>(null);
 
   const getTrips = async () => {
