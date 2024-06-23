@@ -25,6 +25,7 @@ import {
   ModalDialog,
   ModalClose,
   DialogContent,
+  CircularProgress,
 } from '@mui/joy';
 import SeatCounter from './SeatCounter';
 import { useFormik } from 'formik';
@@ -47,6 +48,7 @@ interface InitiateBooking {
 const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawerOpen, busDetails }) => {
   const [seatCount, setSeatCount] = useState(1);
   const searchParams = useSearchParams();
+  const [isLoading, setIsLoading] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState({ isVisible: false, message: '' });
   // Initial values for the form fields
   const initialValues = {
@@ -78,6 +80,7 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
         name: values.name,
         email_id: values?.email_id,
         ...journeySearchDetails,
+        ...busDetails,
       };
       const response = await bookingService.initiateBooking(payload);
       if (response.booking_id) {
@@ -106,6 +109,7 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
   };
 
   const onPaymentSuccess = async (paymentDetails: RazorpayPaymentResponse) => {
+    setIsLoading(true);
     try {
       const response = await bookingService.bookingSuccess(paymentDetails);
       setPaymentStatus({
@@ -114,6 +118,8 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
   const openRazorpay = (orderDetails: any) => {

@@ -9,7 +9,7 @@ const TicketCard: React.FC<TicketCardProps> = ({ details }) => {
   return (
     <>
       {' '}
-      <Card>
+      <Card size="md">
         {/* <CardHeader title="Your Bus Ticket" subheader="Bus #1234 - New York to Boston" /> */}
         <CardContent>
           <Stack direction={'row'} gap={2}>
@@ -18,21 +18,26 @@ const TicketCard: React.FC<TicketCardProps> = ({ details }) => {
               {details?.name}
             </Typography>
           </Stack>
-          <Stack gap={1}>
-            <Typography level="body-xs">Departure: 04/20/2023, 8:00 AM</Typography>
-            <Typography level="body-xs">Arrival: 04/20/2023, 11:00 AM</Typography>
+          <Stack gap={1} direction={'row'}>
+            <Typography level="body-xs">Departure: {details?.departure}</Typography>
+            <Typography level="body-xs">Arrival:{details?.arrival}</Typography>
           </Stack>
-          {/* <Typography level="body-xs">Seat:</Typography> <Typography level="body-md">23B</Typography> */}
+
           <Stack direction={'row'} gap={2}>
-            <Typography level="body-sm" mt={2}>
-              {capitilizeFirstLetter(details?.source)}
-            </Typography>{' '}
-            <Typography level="body-sm" mt={2}>
-              {capitilizeFirstLetter(details?.destination)}
+            <Typography level="body-sm">
+              {capitilizeFirstLetter(details?.source)}-{capitilizeFirstLetter(details?.destination)}
             </Typography>
           </Stack>
 
           <Divider sx={{ marginY: 2 }} />
+          <Typography
+            level="body-sm"
+            sx={{
+              fontWeight: 600,
+            }}
+          >
+            {details?.price} ₹
+          </Typography>
         </CardContent>
         {/* <CardActions>
           <Button size="sm">View Ticket</Button>

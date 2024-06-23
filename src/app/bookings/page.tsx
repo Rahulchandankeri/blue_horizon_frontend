@@ -19,7 +19,13 @@ const Bookings = () => {
   }, []);
   return (
     <Main>
-      <Grid container spacing={2}>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          padding: 2,
+        }}
+      >
         {bookedTickets?.bookingDetails?.map((details: any) => (
           <Grid xs={3} key={details?.booking_id}>
             <TicketCard details={details} />
