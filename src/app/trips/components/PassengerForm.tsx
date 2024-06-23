@@ -18,11 +18,20 @@ import {
   Snackbar,
   Grid,
   FormHelperText,
+  Alert,
+  AspectRatio,
+  IconButton,
+  Modal,
+  ModalDialog,
+  ModalClose,
+  DialogContent,
 } from '@mui/joy';
 import SeatCounter from './SeatCounter';
 import { useFormik } from 'formik';
 import { userBusBookingSchema } from '@/schemas/validitions';
 import bookingService, { RazorpayPaymentResponse } from '@/services/bookingServices';
+import { Check, CheckCircle, Close } from '@mui/icons-material';
+import Link from 'next/link';
 
 interface PassengerFormProps {
   isDrawerOpen: boolean;
@@ -250,25 +259,56 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
           </form>
         </Box>
       </Drawer>{' '}
-      <Snackbar
-        variant="soft"
-        color="success"
-        open={paymentStatus.isVisible}
-        onClose={() => setPaymentStatus((prev) => ({ ...prev, isVisible: false }))}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        endDecorator={
-          <Button
-            onClick={() => setPaymentStatus((prev) => ({ ...prev, isVisible: false }))}
-            size="sm"
-            variant="soft"
-            color="success"
+      <Modal open={paymentStatus.isVisible} onClose={() => setPaymentStatus((prev) => ({ ...prev, isVisible: false }))}>
+        <>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              bgcolor: 'white', // Set background color to white
+              borderRadius: 8,
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Add box shadow
+              border: 0,
+              p: 4,
+              width: '300px',
+              margin: 'auto',
+              mt: '20vh',
+            }}
           >
-            Dismiss
-          </Button>
-        }
-      >
-        {paymentStatus.message}
-      </Snackbar>
+            <CheckCircle sx={{ fontSize: 60, color: 'green' }} />
+            {/* <CheckCircleOutlineIcon/> */}
+            <Typography level="h4" sx={{ mt: 2 }}>
+              Booking Successful
+            </Typography>
+            <Typography level="body-sm" sx={{ mt: 1, textAlign: 'center' }}>
+              Your booking has been successfully completed. Thank you for using our service!
+            </Typography>
+            <Stack direction={'row'} gap={2}>
+              {' '}
+              <Button
+                onClick={() => setPaymentStatus((prev) => ({ ...prev, isVisible: false }))}
+                sx={{ mt: 3 }}
+                variant="solid"
+                color="danger"
+              >
+                Close
+              </Button>{' '}
+              <Link href="/bookings">
+                <Button
+                  onClick={() => setPaymentStatus((prev) => ({ ...prev, isVisible: false }))}
+                  sx={{ mt: 3 }}
+                  variant="solid"
+                  color="success"
+                >
+                  View
+                </Button>
+              </Link>
+            </Stack>
+          </Box>{' '}
+        </>
+      </Modal>
     </>
   );
 };
