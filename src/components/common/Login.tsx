@@ -20,6 +20,7 @@ import Cookies from 'js-cookie';
 import OTPInput from '@/components/common/OTPField';
 import { updateAuthDetails } from '@/redux/features/auth/authSlice';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 interface LoginProps {
   isVisible: boolean;
   setIsVisible: (visible: boolean) => void;
@@ -75,6 +76,7 @@ const Login: React.FC<LoginProps> = ({ isVisible, setIsVisible }) => {
     } catch (error) {
     } finally {
       setIsVisible(false);
+      location.reload();
     }
   };
 

@@ -5,6 +5,9 @@ import { Check, KeyboardArrowRight } from '@mui/icons-material';
 import PassengerForm from '@/app/trips/components/PassengerForm';
 import capitilizeFirstLetter from '@/utils/capitilizeFirstLetter';
 import StarIcon from '@mui/icons-material/Star';
+import Login from '../common/Login';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 interface BusData {
   id: string;
   title: string;
@@ -23,6 +26,7 @@ interface BusCardProps {
 
 const BusCard: React.FC<BusCardProps> = ({ bus }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const isUserLoggedIn = useSelector((state: RootState) => state.isUserLoggedIn);
   return (
     <>
       <Card size="lg" variant="outlined">
@@ -93,7 +97,11 @@ const BusCard: React.FC<BusCardProps> = ({ bus }) => {
           </Button>
         </CardActions>
       </Card>
-      <PassengerForm isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} busDetails={bus} />{' '}
+      {isUserLoggedIn ? (
+        <PassengerForm isDrawerOpen={isDrawerOpen} setIsDrawerOpen={setIsDrawerOpen} busDetails={bus} />
+      ) : (
+        <Login isVisible={isDrawerOpen} setIsVisible={setIsDrawerOpen} />
+      )}
     </>
   );
 };

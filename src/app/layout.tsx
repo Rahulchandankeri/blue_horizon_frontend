@@ -9,6 +9,7 @@ import Footer from '@/components/layouts/Footer';
 import { Provider } from 'react-redux';
 import { store } from '@/redux/store';
 import ReduxProvider from '@/redux/ReduxProvider';
+import { Suspense } from 'react';
 export const metadata: Metadata = {
   title: 'Blue Horizon',
   description: 'Blue Horizon - Bus Booking App',
@@ -25,9 +26,11 @@ export default function RootLayout({
       <CssVarsProvider theme={theme}>
         <body>
           <ReduxProvider>
-            <NavBar />
-            {children}
-            <Footer />
+            <Suspense>
+              <NavBar />
+              {children}
+              <Footer />
+            </Suspense>
           </ReduxProvider>
         </body>
       </CssVarsProvider>
