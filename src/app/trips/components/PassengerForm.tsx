@@ -73,7 +73,7 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
     const journeySearchDetails = {
       source: searchParams.get('source'),
       destination: searchParams.get('destination'),
-      journeyDate: '22/06/2024',
+      journeyDate: searchParams.get('journeyDate') || '22/06/2024',
     };
     try {
       const payload = {
@@ -81,6 +81,7 @@ const PassengerForm: React.FC<PassengerFormProps> = ({ isDrawerOpen, setIsDrawer
         email_id: values?.email_id,
         ...journeySearchDetails,
         ...busDetails,
+        no_of_seats: seatCount,
       };
       const response = await bookingService.initiateBooking(payload);
       if (response.booking_id) {

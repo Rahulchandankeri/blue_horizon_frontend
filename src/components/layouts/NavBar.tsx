@@ -28,6 +28,7 @@ import { RootState } from '@/redux/store';
 import Cookies from 'js-cookie';
 import { updateAuthDetails } from '@/redux/features/auth/authSlice';
 import { useState } from 'react';
+import { Article, DirectionsBusFilled } from '@mui/icons-material';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -59,7 +60,7 @@ export default function Header() {
               borderRadius: '50%',
             }}
           >
-            <LanguageRoundedIcon />
+            <DirectionsBusFilled />
           </IconButton>
         </Link>
       </Stack>
@@ -93,7 +94,7 @@ export default function Header() {
               '--ListItem-radius': 'var(--joy-radius-sm)',
             }}
           >
-            <MenuItem>
+            {/* <MenuItem>
               <Box
                 sx={{
                   display: 'flex',
@@ -107,21 +108,19 @@ export default function Header() {
                 </Box>
               </Box>
             </MenuItem>
-            <ListDivider />
+            <ListDivider /> */}
             {isUserLoggedIn ? (
               <>
-                {' '}
-                <MenuItem>
-                  <Link href="/bookings">
-                    <HelpRoundedIcon />
+                <Link href="/bookings">
+                  <MenuItem>
+                    <Article />
                     Bookings
-                  </Link>
-                </MenuItem>
-                <MenuItem>
+                  </MenuItem>
+                </Link>
+                {/* <MenuItem>
                   <SettingsRoundedIcon />
                   Settings
-                </MenuItem>
-                <ListDivider />
+                </MenuItem> */}
                 <ListDivider />
                 <MenuItem onClick={handleLogOut}>
                   <LogoutRoundedIcon />

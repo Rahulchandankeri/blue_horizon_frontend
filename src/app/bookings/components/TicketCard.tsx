@@ -18,6 +18,7 @@ const TicketCard: React.FC<TicketCardProps> = ({ details }) => {
               {details?.name}
             </Typography>
           </Stack>
+          {details?.no_of_seats > 1 ? <Typography level="body-sm">Passengers: {details?.no_of_seats}</Typography> : null}
           <Stack gap={1} direction={'row'}>
             <Typography level="body-xs">Departure: {details?.departure}</Typography>
             <Typography level="body-xs">Arrival:{details?.arrival}</Typography>
