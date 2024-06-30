@@ -1,7 +1,8 @@
 'use client';
 import BusCard from '@/components/features/BusCard';
+import Section from '@/components/layouts/Section';
 import tripServices from '@/services/tripServices';
-import { Grid } from '@mui/joy';
+import { Grid, Typography } from '@mui/joy';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
@@ -27,14 +28,23 @@ const AvailableTrips = () => {
 
   return (
     <>
-      {' '}
-      {trips?.availableTrips?.map((bus: any, index: number) => {
-        return (
-          <Grid xs={12} key={index}>
-            <BusCard bus={bus} />
+      {trips?.availableTrips?.length ? (
+        trips?.availableTrips?.map((bus: any, index: number) => {
+          return (
+            <Grid xs={12} key={index}>
+              <BusCard bus={bus} />
+            </Grid>
+          );
+        })
+      ) : (
+        <Section>
+          <Grid justifyContent={'center'}>
+            <Typography level="h4" color="primary">
+              No Routes Found!, Try Other Routes
+            </Typography>
           </Grid>
-        );
-      })}
+        </Section>
+      )}
     </>
   );
 };

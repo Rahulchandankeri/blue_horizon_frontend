@@ -1,13 +1,12 @@
 'use client';
 
 import { Autocomplete, Button, FormControl, FormHelperText, Grid, Input, TextField, Typography } from '@mui/joy';
-
 import React, { useState } from 'react';
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
 import { useRouter } from 'next/navigation';
+
 import { useFormik } from 'formik';
 import { searchBusSchema } from '@/schemas/validitions';
+
 const SearchBus = () => {
   const [selectedValue, setSelectedValue] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -35,7 +34,7 @@ const SearchBus = () => {
     <>
       {' '}
       <form onSubmit={handleSubmit}>
-        <Grid container rowSpacing={4} columnSpacing={{ md: 4 }} alignItems={'center'}>
+        <Grid container rowSpacing={4} spacing={2} columnSpacing={{ xs: 1, md: 2 }} alignItems={'center'}>
           <Grid lg={12} textAlign={'center'}>
             <Typography level="h2">Book Bus Tickets</Typography>
           </Grid>
@@ -81,8 +80,8 @@ const SearchBus = () => {
               {errors.dateOfJourney && touched.dateOfJourney ? <FormHelperText>{errors?.dateOfJourney}</FormHelperText> : null}
             </FormControl>
           </Grid>
-          <Grid>
-            <Button size="lg" type="submit">
+          <Grid xs={12} lg={2}>
+            <Button size="lg" fullWidth type="submit">
               Search Buses
             </Button>
           </Grid>{' '}

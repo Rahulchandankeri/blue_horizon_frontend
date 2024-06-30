@@ -103,7 +103,7 @@ export default function Home() {
                 <Typography level="h4">Top Destination:</Typography>
               </Grid>
               {topBusTravelDestinationsInIndia?.map((item) => (
-                <Grid key={item?.uid} xs={2} xl={2} alignItems={'middle'}>
+                <Grid key={item?.uid} xs={6} xl={2} alignItems={'middle'}>
                   <Card orientation="horizontal">
                     {/* <CardMedia component="img"></CardMedia> */}
                     <CardContent>

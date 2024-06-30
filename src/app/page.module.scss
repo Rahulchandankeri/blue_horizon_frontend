@@ -17,13 +17,19 @@
 }
 .busSearchWrapper {
   position: absolute;
-  bottom: 200px;
   background-color: #fff;
   left: 0;
   right: 0;
   width: 85%;
   padding: 32px 64px;
+  bottom: 200px;
   margin: auto;
   border: 1px solid rgb(231 231 231);
   border-radius: 16px;
+
+  @media screen and (max-width: 786px) {
+    bottom: 0;
+    position: relative;
+    padding: 8px 16px;
+  }
 }
