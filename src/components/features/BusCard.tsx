@@ -30,13 +30,13 @@ const BusCard: React.FC<BusCardProps> = ({ bus }) => {
   return (
     <>
       <Card size="lg" variant="outlined">
-        <Grid container alignItems={'center'}>
-          <Grid xs={3}>
+        <Grid container alignItems={'center'} spacing={1}>
+          <Grid xs={12} md={3}>
             <Chip size="sm" variant="outlined" color="neutral">
               {capitilizeFirstLetter(bus?.source)} -{capitilizeFirstLetter(bus?.destination)}
             </Chip>
           </Grid>
-          <Grid xs={5}>
+          <Grid xs={12} md={5}>
             <Stack direction={'row'} gap={2}>
               <Typography level="body-xs">
                 {' '}

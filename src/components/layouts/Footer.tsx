@@ -7,19 +7,25 @@ const Footer = () => {
       {' '}
       <Grid container spacing={4} justifyContent="space-between">
         <Grid xs={12} sm={4}>
-          <Typography gutterBottom>About Us</Typography>
-          <Typography level="body-sm">Learn more about Joy Travel and our team.</Typography>
+          <Typography gutterBottom level="body-sm">
+            About Us
+          </Typography>
+          <Typography level="body-xs">The One Stop To Book Bus</Typography>
         </Grid>
         <Grid xs={12} sm={4}>
-          <Typography gutterBottom>Services</Typography>
-          <Typography level="body-sm">Explore our bus booking, hotel booking, and package deals.</Typography>
+          <Typography gutterBottom level="body-sm">
+            Services
+          </Typography>
+          <Typography level="body-xs">Explore our bus booking, hotel booking, and package deals.</Typography>
         </Grid>
         <Grid xs={12} sm={4}>
-          <Typography gutterBottom>Follow Us</Typography>
-          <Typography level="body-sm">Stay connected with us on social media.</Typography>
+          <Typography gutterBottom level="body-sm">
+            Follow Us
+          </Typography>
+          <Typography level="body-xs">Stay connected with us on social media.</Typography>
         </Grid>
       </Grid>
-      <Typography level="body-sm">&copy; {new Date().getFullYear()} Blue Horizon </Typography>
+      <Typography level="body-xs">&copy; {new Date().getFullYear()} Blue Horizon </Typography>
     </footer>
   );
 };

@@ -7,6 +7,7 @@ const MainWrapper = styled.main`
   margin: auto;
   width: 90%;
   max-width: 1600px;
+  padding: 8px 16px;
   min-height: 60vh;
   margin-top: 32px;
 `;

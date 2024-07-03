@@ -27,7 +27,7 @@ const Bookings = () => {
         }}
       >
         {bookedTickets?.bookingDetails?.map((details: any) => (
-          <Grid xs={3} key={details?.booking_id}>
+          <Grid xs={12} md={2} key={details?.booking_id}>
             <TicketCard details={details} />
           </Grid>
         ))}

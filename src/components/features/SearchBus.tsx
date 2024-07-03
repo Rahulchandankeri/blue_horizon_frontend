@@ -1,11 +1,24 @@
 'use client';
 
-import { Autocomplete, Button, FormControl, FormHelperText, Grid, Input, TextField, Typography } from '@mui/joy';
+import {
+  Autocomplete,
+  Button,
+  FormControl,
+  FormHelperText,
+  Grid,
+  Input,
+  TextField,
+  Typography,
+  styled,
+  useTheme,
+} from '@mui/joy';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useFormik } from 'formik';
 import { searchBusSchema } from '@/schemas/validitions';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const SearchBus = () => {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -36,7 +49,7 @@ const SearchBus = () => {
       <form onSubmit={handleSubmit}>
         <Grid container rowSpacing={4} spacing={2} columnSpacing={{ xs: 1, md: 2 }} alignItems={'center'}>
           <Grid lg={12} textAlign={'center'}>
-            <Typography level="h2">Book Bus Tickets</Typography>
+            <Typography level="h4">Book Bus Tickets</Typography>
           </Grid>
           <Grid lg={3}>
             <FormControl error={errors.fromCity && touched.fromCity ? true : false}>
@@ -75,8 +88,9 @@ const SearchBus = () => {
                 onBlur={handleBlur}
                 name="dateOfJourney"
                 id="dateOfJourney"
+                fullWidth
                 size="lg"
-              ></Input>{' '}
+              ></Input>
               {errors.dateOfJourney && touched.dateOfJourney ? <FormHelperText>{errors?.dateOfJourney}</FormHelperText> : null}
             </FormControl>
           </Grid>
@@ -92,6 +106,7 @@ const SearchBus = () => {
 };
 
 export default SearchBus;
+
 const options = [
   { label: 'Mumbai', value: 'mumbai' },
   { label: 'Delhi', value: 'delhi' },
