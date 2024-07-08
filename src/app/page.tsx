@@ -86,26 +86,27 @@ export default function Home() {
     <div className={styles.mainWrap}>
       <div className="mb-4"></div>
       <Main>
-        <Box position={'relative'}>
-          <Box className={styles.containerBusSearchWrapper}>
-            <div>
-              <Image src={bg} alt="" />{' '}
-            </div>
-          </Box>
-          <Box className={styles.busSearchWrapper}>
-            <SearchBus />
-          </Box>{' '}
-        </Box>
         <Section>
-          <Box marginTop={15}>
+          <Box position={'relative'}>
+            <Box className={styles.containerBusSearchWrapper}>
+              <div>
+                <Image src={bg} alt="" />{' '}
+              </div>
+            </Box>
+            <Box className={styles.busSearchWrapper}>
+              <SearchBus />
+            </Box>{' '}
+          </Box>
+        </Section>
+        <Section>
+          <Box>
             <Grid container spacing={2} alignItems={'middle'}>
               <Grid xs={12}>
                 <Typography level="h4">Top Destination:</Typography>
               </Grid>
               {topBusTravelDestinationsInIndia?.map((item) => (
-                <Grid key={item?.uid} xs={6} xl={1} alignItems={'middle'}>
+                <Grid key={item?.uid} xs={6} xl={2} alignItems={'middle'}>
                   <Card orientation="horizontal" size="sm">
-                    {/* <CardMedia component="img"></CardMedia> */}
                     <CardContent>
                       <Typography level="body-xs">{item?.city}</Typography>
                     </CardContent>

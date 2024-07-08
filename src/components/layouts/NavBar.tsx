@@ -80,36 +80,21 @@ export default function Header() {
             </Typography>
           </Button>
         ) : null}
-        <Dropdown>
-          <MenuButton variant="plain" size="sm" sx={{ maxWidth: '32px', maxHeight: '32px', borderRadius: '9999999px' }}>
-            Menu
-          </MenuButton>
-          <Menu
-            placement="bottom-end"
-            size="sm"
-            sx={{
-              zIndex: '99999',
-              p: 1,
-              gap: 1,
-              '--ListItem-radius': 'var(--joy-radius-sm)',
-            }}
-          >
-            {/* <MenuItem>
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <Box sx={{ ml: 1.5 }}>
-                  <Typography level="title-sm" textColor="text.primary">
-                    User
-                  </Typography>
-                </Box>
-              </Box>
-            </MenuItem>
-            <ListDivider /> */}
-            {isUserLoggedIn ? (
+        {isUserLoggedIn ? (
+          <Dropdown>
+            <MenuButton variant="plain" size="sm" sx={{ maxWidth: '32px', maxHeight: '32px', borderRadius: '9999999px' }}>
+              Menu
+            </MenuButton>
+            <Menu
+              placement="bottom-end"
+              size="sm"
+              sx={{
+                zIndex: '99999',
+                p: 1,
+                gap: 1,
+                '--ListItem-radius': 'var(--joy-radius-sm)',
+              }}
+            >
               <>
                 <Link href="/bookings">
                   <MenuItem>
@@ -117,19 +102,16 @@ export default function Header() {
                     Bookings
                   </MenuItem>
                 </Link>
-                {/* <MenuItem>
-                  <SettingsRoundedIcon />
-                  Settings
-                </MenuItem> */}
+
                 <ListDivider />
                 <MenuItem onClick={handleLogOut}>
                   <LogoutRoundedIcon />
                   Log out
                 </MenuItem>
               </>
-            ) : null}
-          </Menu>
-        </Dropdown>
+            </Menu>
+          </Dropdown>
+        ) : null}
       </Box>
 
       <Login isVisible={isLoginModalVisible} setIsVisible={setIsLoginModalVisible} />
