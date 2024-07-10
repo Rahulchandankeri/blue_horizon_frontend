@@ -13,15 +13,24 @@ const TicketCard: React.FC<TicketCardProps> = ({ details }) => {
         {/* <CardHeader title="Your Bus Ticket" subheader="Bus #1234 - New York to Boston" /> */}
         <CardContent>
           <Stack direction={'row'} gap={2}>
-            <Typography level="body-sm" mt={2}>
-              Passenger:
+            <Typography level="body-xs" mt={2}>
+              <Typography fontWeight={600}> Passenger: </Typography>
               {details?.name}
             </Typography>
           </Stack>
-          {details?.no_of_seats > 1 ? <Typography level="body-sm">Passengers: {details?.no_of_seats}</Typography> : null}
+          {details?.no_of_seats > 1 ? (
+            <Typography level="body-xs">
+              <Typography fontWeight={600}>Passengers: </Typography> {details?.no_of_seats}
+            </Typography>
+          ) : null}
           <Stack gap={1} direction={'row'}>
-            <Typography level="body-xs">Departure: {details?.departure}</Typography>
-            <Typography level="body-xs">Arrival:{details?.arrival}</Typography>
+            <Typography level="body-xs">
+              <Typography fontWeight={600}>Departure: </Typography>
+              {details?.departure}
+            </Typography>
+            <Typography level="body-xs">
+              <Typography fontWeight={600}>Arrival: </Typography> {details?.arrival}
+            </Typography>
           </Stack>
 
           <Stack direction={'row'} gap={2}>

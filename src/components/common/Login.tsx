@@ -73,6 +73,9 @@ const Login: React.FC<LoginProps> = ({ isVisible, setIsVisible }) => {
       const data: any = await authService.verifyOTP(verifyPayload);
       dispatch(updateAuthDetails(true));
       Cookies.set('accessToken', data?.userDetails?.accessToken);
+
+      const _userDetails = JSON.stringify({ role: data?.userDetails?.role });
+      localStorage.setItem('userDetails', _userDetails);
     } catch (error) {
     } finally {
       setIsVisible(false);

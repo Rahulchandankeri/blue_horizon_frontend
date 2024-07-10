@@ -29,16 +29,22 @@ import Cookies from 'js-cookie';
 import { updateAuthDetails } from '@/redux/features/auth/authSlice';
 import { useState } from 'react';
 import { Article, DirectionsBusFilled } from '@mui/icons-material';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const isUserLoggedIn = useSelector((state: RootState) => state.isUserLoggedIn);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleLogOut = () => {
+    router.push('/');
     dispatch(updateAuthDetails(false));
     Cookies.remove('accessToken', { path: '' });
+    localStorage.removeItem('userDetails');
+    location.reload();
+
+    location.assign('/');
   };
   return (
     <Box
