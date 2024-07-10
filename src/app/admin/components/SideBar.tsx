@@ -76,6 +76,7 @@ export default function Sidebar() {
         transition: 'transform 0.4s, width 0.4s',
         zIndex: 10,
         height: '100dvh',
+        overflowY: 'auto',
         width: 'var(--Sidebar-width)',
         top: 0,
         p: 2,
@@ -196,15 +197,6 @@ export default function Sidebar() {
                     <ListItemButton>Create</ListItemButton>
                   </ListItem>
                 </Link>
-                <ListItem>
-                  <ListItemButton>Backlog</ListItemButton>
-                </ListItem>
-                <ListItem>
-                  <ListItemButton>In progress</ListItemButton>
-                </ListItem>
-                <ListItem>
-                  <ListItemButton>Done</ListItemButton>
-                </ListItem>
               </List>
             </Toggler>
           </ListItem>

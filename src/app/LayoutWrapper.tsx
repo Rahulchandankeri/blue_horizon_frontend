@@ -21,7 +21,7 @@ const LayoutWrapper = ({
 
   return (
     <>
-      <NavBar />
+      {userDetails?.role !== 'admin' ? <NavBar /> : null}
       <Grid container>
         {userDetails?.role === 'admin' ? (
           <>
@@ -34,7 +34,7 @@ const LayoutWrapper = ({
           <Grid xs={12}>{children}</Grid>
         )}
       </Grid>
-      <Footer />
+      {userDetails?.role !== 'admin' ? <Footer /> : null}
     </>
   );
 };
