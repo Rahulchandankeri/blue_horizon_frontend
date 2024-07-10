@@ -119,7 +119,7 @@ export default function Sidebar() {
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <IconButton variant="soft" color="primary" size="sm">
-          <BrightnessAutoRoundedIcon />
+          B
         </IconButton>
         <Typography level="title-lg">Blue Horizon</Typography>
       </Box>
