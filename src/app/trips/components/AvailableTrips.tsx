@@ -1,10 +1,15 @@
 'use client';
 import BusCard from '@/components/features/BusCard';
-import Section from '@/components/layouts/Section';
+
 import tripServices from '@/services/tripServices';
 import { Grid, Typography } from '@mui/joy';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import bg from '../../../../public/assets/images/not-found.png';
+import Image from 'next/image';
+import styles from './AvailableTrips.module.scss';
+import Section from '@/components/layouts/Section';
+import Sidebar from '@/app/admin/components/SideBar';
 
 const AvailableTrips = () => {
   const searchParams = useSearchParams();
@@ -37,13 +42,15 @@ const AvailableTrips = () => {
           );
         })
       ) : (
-        <Section>
-          <Grid justifyContent={'center'}>
+        <Grid xs={12}>
+          <div className={styles?.bgWrapper}>
             <Typography level="h4" color="primary">
-              No Routes Found!, Try Other Routes
+              No Routes Found!
             </Typography>
-          </Grid>
-        </Section>
+
+            <Image src={bg} alt="bg" height={400} />
+          </div>
+        </Grid>
       )}
     </>
   );

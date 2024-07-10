@@ -45,3 +45,14 @@ export const searchBusSchema = Yup.object({
     .notOneOf([Yup.ref('fromCity'), null], 'From city and To city cannot be the same'),
   dateOfJourney: Yup.string().required('Please select date of journey'),
 });
+export const createRouteSchema = Yup.object().shape({
+  source: Yup.string().required('Source is required'),
+  destination: Yup.string().required('Destination is required'),
+  departure: Yup.string()
+    .matches(/^([0-1]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format (HH:mm)')
+    .required('Departure time is required'),
+  arrival: Yup.string()
+    .matches(/^([0-1]\d|2[0-3]):([0-5]\d)$/, 'Invalid time format (HH:mm)')
+    .required('Arrival time is required'),
+  price: Yup.number().typeError('Price must be a number').positive('Price must be positive').required('Price is required'),
+});

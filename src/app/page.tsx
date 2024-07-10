@@ -1,11 +1,8 @@
 import SearchBus from '@/components/features/SearchBus';
 import Main from '@/components/layouts/Main';
-import NavBar from '@/components/layouts/NavBar';
 import { Box, Card, CardContent, Container, Grid, Typography } from '@mui/joy';
 import styles from './page.module.scss';
-import { CardMedia } from '@mui/material';
 import Section from '@/components/layouts/Section';
-import Footer from '@/components/layouts/Footer';
 import bg from '../../public/assets/images/download.webp';
 import Image from 'next/image';
 const topBusTravelDestinationsInIndia = [
