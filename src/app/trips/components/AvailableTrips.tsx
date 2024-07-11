@@ -20,7 +20,7 @@ const AvailableTrips = () => {
       const payload = {
         source: searchParams.get('source'),
         destination: searchParams.get('destination'),
-        journeyDate: '22/06/2024',
+        journeyDate: searchParams.get('journeyDate'),
       };
       const response = await tripServices.getAvailableTrips(payload);
       setTrips(response);

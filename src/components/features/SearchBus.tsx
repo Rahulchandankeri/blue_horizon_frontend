@@ -34,6 +34,8 @@ const SearchBus = () => {
   const { values, errors, handleBlur, handleChange, touched, handleSubmit, setFieldValue } = useFormik({
     initialValues,
     validationSchema: searchBusSchema,
+    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: (values, action) => {
       handleSearchBuses(values);
     },
@@ -42,16 +44,18 @@ const SearchBus = () => {
   const handleSearchBuses = (values: any) => {
     console.log(values);
     router.push(`/trips?source=${values?.fromCity}&destination=${values?.toCity}&journeyDate=${values?.dateOfJourney}`);
-  };
+  }
+  
+  
   return (
     <>
       {' '}
       <form onSubmit={handleSubmit}>
         <Grid container rowSpacing={4} spacing={2} columnSpacing={{ xs: 1, md: 2 }} alignItems={'center'}>
           <Grid lg={12} textAlign={'center'}>
-            <Typography level="h4">Book Bus Tickets</Typography>
+            <Typography level="h2">Book Tickets Now!</Typography>
           </Grid>
-          <Grid lg={3}>
+          <Grid lg={3.3}>
             <FormControl error={errors.fromCity && touched.fromCity ? true : false}>
               <Autocomplete
                 size="lg"
@@ -65,7 +69,7 @@ const SearchBus = () => {
               {errors.fromCity && touched.fromCity ? <FormHelperText>{errors.fromCity}</FormHelperText> : null}
             </FormControl>
           </Grid>
-          <Grid lg={3}>
+          <Grid lg={3.3}>
             <FormControl error={errors.toCity && touched.toCity ? true : false}>
               <Autocomplete
                 size="lg"
@@ -79,7 +83,7 @@ const SearchBus = () => {
               {errors.toCity && touched.toCity ? <FormHelperText>{errors?.toCity}</FormHelperText> : null}
             </FormControl>
           </Grid>
-          <Grid lg={3}>
+          <Grid lg={3.3}>
             {' '}
             <FormControl error={errors.dateOfJourney && touched.dateOfJourney ? true : false}>
               <Input

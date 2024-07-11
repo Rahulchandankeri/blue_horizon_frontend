@@ -46,7 +46,7 @@ const TicketCard: React.FC<TicketCardProps> = ({ details }) => {
               fontWeight: 600,
             }}
           >
-            {details?.price} ₹
+            {details?.no_of_seats * details?.price} ₹
           </Typography>
         </CardContent>
         {/* <CardActions>

@@ -87,12 +87,12 @@ export default function Home() {
           <Box position={'relative'}>
             <Box className={styles.containerBusSearchWrapper}>
               <div>
-                <Image src={bg} alt="" />{' '}
+                <Image src={bg} alt="" />
               </div>
             </Box>
             <Box className={styles.busSearchWrapper}>
               <SearchBus />
-            </Box>{' '}
+            </Box>
           </Box>
         </Section>
         <Section>

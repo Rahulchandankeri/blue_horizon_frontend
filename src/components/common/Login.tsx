@@ -72,7 +72,7 @@ const Login: React.FC<LoginProps> = ({ isVisible, setIsVisible }) => {
 
       const data: any = await authService.verifyOTP(verifyPayload);
       dispatch(updateAuthDetails(true));
-      Cookies.set('accessToken', data?.userDetails?.accessToken);
+      Cookies.set('accessToken', data?.userDetails?.accessToken, { expires: 7 });
 
       const _userDetails = JSON.stringify({ role: data?.userDetails?.role });
       localStorage.setItem('userDetails', _userDetails);

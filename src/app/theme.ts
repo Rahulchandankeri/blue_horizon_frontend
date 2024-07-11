@@ -28,15 +28,19 @@ const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
+        text: {
+          primary: '#363636', // Green color for primary text
+          secondary: '#363636', // Blue color for secondary text
+        },
         primary: {
-          50: '#4f46e5',
+          50: '#007BFF',
           100: '#bbdefb',
           200: '#90caf9',
           300: '#64b5f6',
           400: '#42a5f5',
-          500: '#4f46e5',
-          600: '#4338ca',
-          700: '#1976d2',
+          500: '#0F3057',
+          600: '#1A4776',
+          700: '#09253A',
           800: '#1565c0',
           900: '#4f46e5',
         },
@@ -55,6 +59,14 @@ const theme = extendTheme({
         // Add more color definitions as needed
       },
     },
+  },
+
+  fontFamily: {
+    body: 'Poppins,sans-serif',
+    display: `Poppins,sans-serif`,
+  },
+  typography: {
+    h1: {},
   },
 });
 

@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import GlobalStyles from '../styles/GlobalStyles';
-import { CssVarsProvider, Grid } from '@mui/joy';
+import { CssVarsProvider } from '@mui/joy';
 import theme from './theme';
-import NavBar from '@/components/layouts/NavBar';
-import Footer from '@/components/layouts/Footer';
 
 import ReduxProvider from '@/redux/ReduxProvider';
 import { Suspense } from 'react';
-import Sidebar from './admin/components/SideBar';
+
 import LayoutWrapper from './LayoutWrapper';
 export const metadata: Metadata = {
   title: 'Blue Horizon',

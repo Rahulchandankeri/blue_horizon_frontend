@@ -50,8 +50,7 @@ const BusCard: React.FC<BusCardProps> = ({ bus }) => {
           </Grid>
 
           <Grid xs={4}>
-            {' '}
-            <Typography level="body-md">
+            <Typography level="body-xs">
               <Stack
                 alignItems={'center'}
                 justifyContent={'right'}
@@ -60,11 +59,10 @@ const BusCard: React.FC<BusCardProps> = ({ bus }) => {
                   textAlign: 'right',
                 }}
               >
-                {' '}
                 4.4{' '}
                 <StarIcon
                   sx={{
-                    fontSize: 20,
+                    fontSize: 14,
                   }}
                 />{' '}
               </Stack>
